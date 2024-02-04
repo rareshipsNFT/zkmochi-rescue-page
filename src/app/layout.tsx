@@ -1,7 +1,7 @@
 import { Providers } from './providers';
 import '../index.css';
 export const metadata = {
-	title: 'zkSync + wagmi + Next.js',
+	title: 'ZkMochi Rescue Website',
 };
 
 export default function RootLayout({
@@ -21,6 +21,13 @@ export default function RootLayout({
 
 	return (
 		<html lang="en">
+			<link
+				rel="icon"
+				href="/logo.jpg"
+				type="image/jpg"
+				sizes="32x32"
+			/>
+
 			<body style={globalStyles}>
 				<Providers>{children}</Providers>
 			</body>
