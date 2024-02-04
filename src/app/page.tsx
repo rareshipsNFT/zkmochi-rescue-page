@@ -23,7 +23,7 @@ import { WriteContractPrepared } from '../components/WriteContractPrepared';
 import Image from 'next/image';
 export default function Page() {
 	return (
-		<div className="p-[50px] h-screen text-white bg-[#141414] relative">
+		<div className="p-[50px] h-screen overflow-hidden text-white bg-[#141414] relative">
 			<Image
 				src="/Mochi.png"
 				alt="Mochi Logo"
@@ -34,34 +34,31 @@ export default function Page() {
 			<Grid.Container
 				gap={2}
 				justify="center"
+				className="flex"
 			>
-				<Grid
-					xs={24}
-					justify="center"
-				>
+				<div className="flex lg:flex-row flex-col justify-center items-center space-y-[10px]  w-full lg:justify-between">
 					<Text h1>
 						<p className="text-xl font-semibold">zkMochi Rescue Site</p>
 					</Text>
-				</Grid>
-				<Grid
-					xs={24}
-					justify="center"
-				>
+
 					<Connect />
-				</Grid>
+				</div>
+
 				<Connected>
-					<Grid
-						xs={24}
-						justify="center"
-					>
-						<RaresourcesBalances />
-					</Grid>
-					<Grid
-						xs={24}
-						justify="center"
-					>
-						<RescueMochi />
-					</Grid>
+					<div className="space-y-[100px] flex flex-col justify-center">
+						<Grid
+							xs={24}
+							justify="center"
+						>
+							<RaresourcesBalances />
+						</Grid>
+						<Grid
+							xs={24}
+							justify="center"
+						>
+							<RescueMochi />
+						</Grid>
+					</div>
 				</Connected>
 			</Grid.Container>
 		</div>

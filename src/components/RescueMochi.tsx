@@ -29,45 +29,43 @@ export function RescueMochi() {
 	}, [state]);
 
 	return (
-		<Grid.Container
-			gap={2}
-			justify="center"
-		>
+		<div className="bg-[#f1b0ff] text-black space-y-[20px] w-fit p-[20px] rounded-lg">
 			<Grid
 				xs={24}
 				justify="center"
 			>
-				<Text h3>Rescue Mochi</Text>
+				<Text h3>
+					{' '}
+					<div className="text-3xl font-semibold">Rescue Mochi</div>{' '}
+				</Text>
 			</Grid>
 			<Grid
 				xs={24}
 				justify="center"
 			>
 				<Spacer h={0.5} />
-				<Input
+				<input
 					{...bindings}
 					name="count"
 					placeholder="Number of zkMochi"
-					crossOrigin={undefined}
+					className="rounded-lg bg-[#ffffff82] border-2 border-[#ffffffb5] focus:outline-none py-[5px] px-[10px]"
 				/>
 				<Spacer h={0.5} />
-				<pre>
-					Cost: {cost[0] || 0} Steel / {cost[1] || 0} Wafer / {cost[2] || 0}{' '}
-					Cells
-				</pre>
+				<p className="font-[300] text-[14px]">
+					<strong>Cost:</strong> Steel : {cost[0] || 0} Wafer : {cost[1] || 0}{' '}
+					Cells :{cost[2] || 0}{' '}
+				</p>
 			</Grid>
-			<Grid
-				xs={24}
-				justify="center"
+
+			<Button
+				type="secondary"
+				placeholder={undefined}
+				className="w-full"
+				width={'100%'}
 			>
-				<Button
-					type="secondary"
-					placeholder={undefined}
-				>
-					Rescue
-				</Button>
-			</Grid>
-		</Grid.Container>
+				Rescue
+			</Button>
+		</div>
 	);
 
 	return (
