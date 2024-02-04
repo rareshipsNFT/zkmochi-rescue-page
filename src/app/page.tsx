@@ -36,9 +36,11 @@ export default function Page() {
 				justify="center"
 				className="flex"
 			>
-				<div className="flex lg:flex-row flex-col justify-center items-center space-y-[10px]  w-full lg:justify-between">
+				<div className="flex lg:flex-row flex-col justify-center items-center  w-full lg:justify-between">
 					<Text h1>
-						<p className="text-xl font-semibold">zkMochi Rescue Site</p>
+						<p className="text-xl font-semibold pb-[10px] lg:pb-0">
+							zkMochi Rescue Site
+						</p>
 					</Text>
 
 					<Connect />
