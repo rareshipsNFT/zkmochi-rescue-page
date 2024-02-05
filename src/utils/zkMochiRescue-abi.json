@@ -1,0 +1,36 @@
+[
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "_zkMochiPlanet",
+                "type": "address"
+            },
+            {
+                "internalType": "contract IERC721",
+                "name": "_zkMochiContract",
+                "type": "address"
+            },
+            {
+                "internalType": "contract IERC1155",
+                "name": "_raresourcesContract",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint8",
+                "name": "_count",
+                "type": "uint8"
+            }
+        ],
+        "name": "rescueMochi",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }
+]

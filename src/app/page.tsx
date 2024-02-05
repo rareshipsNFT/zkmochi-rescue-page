@@ -22,6 +22,7 @@ import { WriteContract } from '../components/WriteContract';
 import { WriteContractPrepared } from '../components/WriteContractPrepared';
 import Image from 'next/image';
 export default function Page() {
+
 	return (
 		<div className="p-[50px] h-screen overflow-hidden text-white bg-[#141414] relative">
 			<Image
