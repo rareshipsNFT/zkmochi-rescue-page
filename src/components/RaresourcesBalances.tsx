@@ -1,8 +1,8 @@
 'use client'
 
-import { useAccount, useContractReads } from 'wagmi'
+import { useAccount, useContractRead, useContractReads } from 'wagmi'
 
-import { raresourcesContractConfig } from './contracts'
+import { raresourcesContractConfig } from './contracts_test'
 import { stringify } from '../utils/stringify'
 import { Grid, Text } from '@geist-ui/core';
 import { use } from 'react';
@@ -10,20 +10,19 @@ import { formatEther, parseEther, parseGwei } from 'viem';
 
 export function RaresourcesBalances() {
   const { address } = useAccount();
-  const { data, isSuccess, isLoading } = useContractReads({
-    contracts: [
-      {
-        ...raresourcesContractConfig,
-        functionName: 'balanceOfBatch',
-        args: [[address!,address!,address!], [1,2,3]],
-      },
-    ],
+  const { data, isSuccess, isLoading } = useContractRead({
+      ...raresourcesContractConfig,
+      functionName: 'balanceOfBatch',
+      args: [[address!,address!,address!], [1,2,3]],
+      enabled: true,
   })
 
-  let [balanceOfSteel, balanceOfWafer, balanceOfCells] = (!isLoading && isSuccess) ? [
-    formatEther(data[0].result[2]),
-    formatEther(data[0].result[0]),
-    formatEther(data[0].result[1]),
+  console.log('raresources data:', data)
+
+  let [balanceOfSteel, balanceOfWafer, balanceOfCells] = (!isLoading && isSuccess && data) ? [
+    formatEther(data[2]),
+    formatEther(data[0]),
+    formatEther(data[1]),
   ] : [0, 0, 0];
 
 

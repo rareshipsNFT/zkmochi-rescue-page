@@ -31,6 +31,9 @@ export default function Page() {
         <Grid xs={24} justify="center">
           <Connect />
         </Grid>
+        <Grid xs={24} justify="center">
+          <NetworkSwitcher />
+        </Grid>
         <Connected>
           <Grid xs={24} justify="center">
             <RaresourcesBalances />
