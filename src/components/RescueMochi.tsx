@@ -6,7 +6,7 @@ import {Grid} from '@geist-ui/core'
 import { use, useEffect, useState } from 'react'
 import { parseEther } from 'viem'
 import { useAccount, useContractReads, useContractWrite, useSendTransaction, useWaitForTransaction } from 'wagmi'
-import { raresourcesContractConfig, rescueContractConfig } from './contracts_test'
+import { raresourcesContractConfig, rescueContractConfig } from './contracts'
 
 import { stringify } from '../utils/stringify';
 
@@ -35,6 +35,7 @@ export function RescueMochi() {
 
   const { data: isApprovedForAll, isSuccess: isApprovedForAllSuccess, isLoading: isApprovedForAllLoading } = useContractReads({
     contracts: [
+      // @ts-ignore
       {
         ...raresourcesContractConfig,
         functionName: 'isApprovedForAll',
@@ -88,6 +89,11 @@ export function RescueMochi() {
     writeRescue({ args: [state] });
   }
   
+  const { isLoading: isConfirming, isSuccess: isConfirmed } = 
+    useWaitForTransaction({ 
+      hash: dataRescue?.hash, 
+    }) 
+
   return (
 		<div className="bg-[#f1b0ff] text-black space-y-[20px] w-fit p-[20px] rounded-lg">
       <Grid.Container gap={2} justify="center">
@@ -118,10 +124,12 @@ export function RescueMochi() {
           </p>
         </Grid>
         <Grid xs={24} justify="center">
-          {!isApproved && !isLoadingSetApprovalForAll && <Button type="secondary" onClick={approve} placeholder={undefined}>Approve</Button>}
-          {isApproved && !isLoadingRescue && <Button type="secondary" onClick={rescue} placeholder={undefined}>Rescue</Button>}
+          <>
+          {(!isApproved && !isLoadingSetApprovalForAll) && <Button type="secondary" onClick={approve} placeholder={undefined}>Approve</Button>}
+          {(isApproved && !isLoadingRescue) && <Button type="secondary" onClick={rescue} placeholder={undefined}>Rescue</Button>}
           {isLoadingSetApprovalForAll && <div>Approving...</div>}
           {isLoadingRescue && <div>Rescuing...</div>}
+          </>
         </Grid>
         <Grid xs={24} justify="center">
           {isSuccessSetApprovalForAll && <div>Approval Transaction Hash: {dataSetApprovalForAll?.hash}</div>}
@@ -130,6 +138,10 @@ export function RescueMochi() {
         <Grid xs={24} justify="center">
           {isErrorSetApprovalForAll && <div>Error: {errorSetApprovalForAll?.message}</div>}
           {isErrorRescue && <div>Error: {errorRescue?.message.split('Contract Call')[0]}</div>}
+        </Grid>
+        <Grid xs={24} justify="center">
+          {isConfirming && <div>Confirming...</div>}
+          {isConfirmed && <div>Confirmed!</div>}
         </Grid>
       </Grid.Container>
 		</div>

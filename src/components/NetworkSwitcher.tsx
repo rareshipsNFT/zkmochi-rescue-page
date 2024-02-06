@@ -26,7 +26,7 @@ export function NetworkSwitcher() {
           </Grid>
           {chains.map((x) =>
             x.id === chain?.id ? null : (
-              <Grid>
+              <Grid key={x.id}>
               <Button key={x.id} onClick={() => switchNetwork(x.id)} placeholder={undefined}>
                 {x.name}
                 {isLoading && x.id === pendingChainId && ' (switching)'}

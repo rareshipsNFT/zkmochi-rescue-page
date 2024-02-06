@@ -21,12 +21,13 @@ import { WatchPendingTransactions } from '../components/WatchPendingTransactions
 import { WriteContract } from '../components/WriteContract';
 import { WriteContractPrepared } from '../components/WriteContractPrepared';
 import Image from 'next/image';
+import MochiLogo from '../../public/Mochi.png';
 export default function Page() {
 
 	return (
 		<div className="p-[50px] h-screen overflow-hidden text-white bg-[#141414] relative">
-			<Image
-				src="/Mochi.png"
+			<img
+				src='../../Mochi.png'
 				alt="Mochi Logo"
 				width={400}
 				height={400}

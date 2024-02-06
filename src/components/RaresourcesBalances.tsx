@@ -2,7 +2,7 @@
 
 import { useAccount, useContractRead, useContractReads } from 'wagmi'
 
-import { raresourcesContractConfig } from './contracts_test'
+import { raresourcesContractConfig } from './contracts'
 import { stringify } from '../utils/stringify'
 import { Grid, Text } from '@geist-ui/core';
 import { use } from 'react';
@@ -20,8 +20,11 @@ export function RaresourcesBalances() {
   console.log('raresources data:', data)
 
   let [balanceOfSteel, balanceOfWafer, balanceOfCells] = (!isLoading && isSuccess && data) ? [
+    // @ts-ignore
     formatEther(data[2]),
+    // @ts-ignore
     formatEther(data[0]),
+    // @ts-ignore
     formatEther(data[1]),
   ] : [0, 0, 0];
 
@@ -62,8 +65,7 @@ export function RaresourcesBalances() {
 						</p>
 						<p>
 							{' '}
-							Cells:
-							<span>{balanceOfCells}</span>
+							Cells: <span>{balanceOfCells}</span>
 						</p>
 					</div>
 				</Grid.Container>

@@ -13,6 +13,6 @@ export const raresourcesContractConfig = {
 } as const
 
 export const rescueContractConfig = {
-  address: '0x5111DC2AC610aA26423CabA3AeE9f2Ebfc5cc6e3',
+  address: '0x0344de6f9F9760070e0dc9B0cbd18b54a184A28e',
   abi: rescueABI,
 } as const
