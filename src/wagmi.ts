@@ -8,7 +8,7 @@ import { publicProvider } from 'wagmi/providers/public'
 
 export const chains: Chain[] = [
   zkSync,
-  zkSyncSepoliaTestnet,
+  // zkSyncSepoliaTestnet,
   ...(
       process.env.NODE_ENV === "development" ?
       [

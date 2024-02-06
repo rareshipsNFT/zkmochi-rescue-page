@@ -22,12 +22,20 @@ import { WriteContract } from '../components/WriteContract';
 import { WriteContractPrepared } from '../components/WriteContractPrepared';
 import Image from 'next/image';
 import MochiLogo from '../../public/Mochi.png';
+import { useNetwork, useSwitchNetwork } from 'wagmi';
 export default function Page() {
+
+	const { chain } = useNetwork()
+	const { chains, error, isLoading, pendingChainId, switchNetwork } =
+		useSwitchNetwork()
+
+	console.log("chain id:", chain?.id, chain?.name, chain?.unsupported)
+	const isZkSync = chain?.id === 324
 
 	return (
 		<div className="p-[50px] h-screen overflow-hidden text-white bg-[#141414] relative">
 			<img
-				src='../../Mochi.png'
+				src={MochiLogo.src}
 				alt="Mochi Logo"
 				width={400}
 				height={400}
@@ -47,22 +55,30 @@ export default function Page() {
 
 					<Connect />
 				</div>
-
 				<Connected>
-					<div className="space-y-[100px] flex flex-col justify-center">
-						<Grid
-							xs={24}
-							justify="center"
-						>
-							<RaresourcesBalances />
-						</Grid>
-						<Grid
-							xs={24}
-							justify="center"
-						>
-							<RescueMochi />
-						</Grid>
-					</div>
+					{!isZkSync && (
+						<Grid.Container gap={2}>
+							<Grid xs={24} justify="center">
+								<NetworkSwitcher />
+							</Grid>
+						</Grid.Container>
+					)}
+					{isZkSync && (
+						<div className="space-y-[100px] flex flex-col justify-center">
+							<Grid
+								xs={24}
+								justify="center"
+							>
+								<RaresourcesBalances />
+							</Grid>
+							<Grid
+								xs={24}
+								justify="center"
+							>
+								<RescueMochi />
+							</Grid>
+						</div>
+					)}
 				</Connected>
 			</Grid.Container>
 		</div>
